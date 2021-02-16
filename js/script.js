@@ -55,10 +55,10 @@ const titleClickHandler = function(event){
 
   targetArticle.classList.add('active');
 
-console.log('Add active for clickedArticle', targetArticle);
-}
+  console.log('Add active for clickedArticle', targetArticle);
+  }
 
-function generateTitleLinks(){
+  function generateTitleLinks(){
 
   /* remove contents of titleList */
 
