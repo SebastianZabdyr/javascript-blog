@@ -1,11 +1,11 @@
 
 'use strict';
 
-const optArticleSelector = '.post';
+const opArticleSelector = '.post';
 
-const  optTitleSelector = '.post-title';
+const optTitleSelector = '.post-title';
 
-const  optTitleListSelector = '.titles';
+const optTitleListSelector = '.titles';
 
 const titleClickHandler = function(event){
   event.preventDefault();
@@ -18,7 +18,7 @@ const titleClickHandler = function(event){
   const activeLinks = document.querySelectorAll('.titles a.active');
 
   for(let activeLink of activeLinks){
-  activeLink.classList.remove('active');
+    activeLink.classList.remove('active');
   }
 
   /* [DONE] add class 'active' to the clicked link */
@@ -29,10 +29,10 @@ const titleClickHandler = function(event){
 
   /* [DONE] remove class 'active' from all articles */
 
-  const activeArticles = document.querySelectorAll('.post article.active');
+  const activeArticles = document.querySelectorAll('.posts article.active');
 
   for(let activeArticle of activeArticles){
-    activeArtilce.classList.remove('active');
+    activeArticle.classList.remove('active');
   }
 
   console.log('remove active class for Artilces ', activeArticles);
@@ -45,7 +45,7 @@ const titleClickHandler = function(event){
 
   /* [DONE] find the correct article using the selector (value of 'href' attribute) */
 
-  console.log('find the correct article')
+  console.log('find the correct article');
 
   const targetArticle = document.querySelector('articleSelector');
 
@@ -56,9 +56,9 @@ const titleClickHandler = function(event){
   targetArticle.classList.add('active');
 
   console.log('Add active for clickedArticle', targetArticle);
-  }
-
-  function generateTitleLinks(){
+};
+////////////////////////////////////////////////////////////
+function generateTitleLinks(){
 
   /* remove contents of titleList */
 
@@ -90,14 +90,14 @@ const titleClickHandler = function(event){
 
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
 
-    console.log(linkHTML)
+    console.log(linkHTML);
 
     /* insert link into titleList */
 
     html = html + linkHTML;
     /*console.log(html);*/
+  }
 
-    }
 
   titleList.innerHTML = html;
 
