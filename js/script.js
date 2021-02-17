@@ -288,8 +288,8 @@ function generateTags(){
     console.log('insert HTML');
 
     tagWrapper.innerHTML = html;
-
-    const links = document.querySelectorAll(optArticleTagsSelector);
+    /*
+    const links = document.querySelectorAll('a.active[href^="#tag-"]');
 
     for(let link of links){
 
@@ -298,14 +298,41 @@ function generateTags(){
 
     console.log(links);
 
-    /* END LOOP: for every article: */
 
+*/
     console.log('END LOOP: for every article');
   }
 }
 
 generateTags();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function addClickListenersToTags(){
+  /* find all links to tags */
+
+  const tagLinks = document.querySelectorAll(optArticleTagsSelector);
+
+  console.log(tagLinks);
+  /* START LOOP: for each link */
+
+  for(let tagLink of tagLinks){
+
+    console.log(tagLink);
+
+    /* add tagClickHandler as event listener for that link */
+
+    tagLink.addEventListener('click', tagClickHandler);
+
+
+  }  /* END LOOP: for each link */
+}
+
+addClickListenersToTags();
+
+
+
+
 
 
 
