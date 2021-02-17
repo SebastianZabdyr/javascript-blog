@@ -7,6 +7,8 @@ const optTitleSelector = '.post-title';
 
 const optTitleListSelector = '.titles';
 
+const optArticleTagsSelector = '.post-tags .list';
+
 const titleClickHandler = function(event){
   event.preventDefault();
   const clickedElement = this;
@@ -47,7 +49,7 @@ const titleClickHandler = function(event){
 
   console.log('find the correct article');
 
-  const targetArticle = document.querySelector('articleSelector');
+  const targetArticle = document.querySelector(articleSelector);
 
   console.log(targetArticle);
 
