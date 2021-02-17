@@ -204,7 +204,7 @@ function generateTags(){
 
     for(let link of links){
 
-      link.addEventListener('click', tagClickHandler);
+      link.addEventListener('click', titleClickHandler);
     }
 
     console.log(links);
@@ -295,3 +295,26 @@ function tagClickHandler(event){
 /*tagClickHandler();*/
 
 ////////////////////////////////////////////
+
+function addClickListenersToTags(){
+  /* find all links to tags */
+
+  const tagLinks = document.querySelectorAll(optArticleTagsSelector);
+
+  console.log(tagLinks);
+  /* START LOOP: for each link */
+
+  for(let tagLink of tagLinks){
+
+    console.log(tagLink);
+
+    /* add tagClickHandler as event listener for that link */
+
+    tagLinks.addEventListener('click', tagClickHandler);
+
+    console.log(links);
+
+  }  /* END LOOP: for each link */
+}
+
+addClickListenersToTags();
