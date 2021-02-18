@@ -331,9 +331,14 @@ function generateTags(){
     }
     /* [NEW] END LOOP: for each tag in allTags: */
 
-    /*[NEW] add HTML from allTagsHTML to tagList */
-    tagList.innerHTML = allTagsHTML;
 
+
+
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML ;
+
+
+/////////////////////////////////////////zrob zeby byl link w tych tagach/////////////////////////////////
 
 
 }
