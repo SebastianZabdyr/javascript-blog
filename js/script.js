@@ -11,8 +11,16 @@ const optArticleTagsSelector = '.post-tags .list';
 
 const optArticleAuthorSelector = '.post-author';
 
-const optTagsListSelector = '.tags.list'
+const optTagsListSelector = '.tags.list';
 
+const optCloudClassCount = 5;
+
+const optCloudClassPrefix = 'tag-size-' ;
+
+const optAuthorsListSelector = '.author.list';
+
+
+console.log(optCloudClassCount, optCloudClassPrefix);
 
 const titleClickHandler = function(event){
   event.preventDefault();
@@ -249,6 +257,49 @@ function calculateTagsParams (tags) {
 
 
 
+
+
+
+
+
+
+
+
+
+function calculateTagClass (count , params){
+
+
+const normalizedCount = count - params.min;
+
+const normalizedMax = params.max - params.min;
+
+const percentage = normalizedCount / normalizedMax;
+
+const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+return optCloudClassPrefix , classNumber;
+
+
+console.log (optCloudClassPrefix , classNumber);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -375,6 +426,9 @@ function generateTags(){
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [NEW] generate code of a link and add it to allTagsHTML */
+
+
+
       allTagsHTML += tag + ' (' + allTags[tag] + ') ';
     }
     /* [NEW] END LOOP: for each tag in allTags: */
@@ -494,9 +548,23 @@ function authorClickHandler(event){
 
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generateAuthors (){
+
+
+    /* [NEW] create a new variable allAutros with an empty object */
+    let allAuthors = {};
+
+
 
   /*find all articles*/
 
@@ -542,6 +610,19 @@ function generateAuthors (){
 
     console.log(html);
 
+
+
+    /* [NEW] check if this link is NOT already in allTags */
+    if(!allAuthors[articleAuthor]) {
+      /* [NEW] add tag to allTags object */
+      allAuthors[articleAuthor] = 1;
+    } else {
+      allAuthors[articleAuthor]++;
+    }
+
+
+
+
     /*instert html into AuthorsPlace*/
 
     authorsPlace.innerHTML = html;
@@ -549,6 +630,27 @@ function generateAuthors (){
     console.log(authorsPlace.innerHTML);
 
   }          /*END OF MAIN LOOP*/
+
+
+  /* [NEW] find list of authors in right column */
+  const authorList = document.querySelector('.authors');
+
+
+
+  /* [NEW] create variable for all authors HTML code */
+  let allAuthorsHTML = '';
+
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for(let articleAuthor in allAuthors){
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+    allAuthorsHTML += articleAuthor + ' (' + allAuthors[articleAuthor] + ') ';
+  }
+  /* [NEW] END LOOP: for each author in allTags: */
+
+  /*[NEW] add HTML from allAuthorsHTML to authorList */
+  authorList.innerHTML = allAuthorsHTML;
+
+
 
 }
 
