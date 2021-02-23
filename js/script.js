@@ -1,6 +1,12 @@
 
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+};
+
 const optArticleSelector = '.post';
 
 const optTitleSelector = '.post-title';
@@ -20,8 +26,11 @@ const optCloudClassPrefix = 'tag-size-' ;
 const optAuthorsListSelector = '.author.list';
 
 const titleClickHandler = function(event){
+
   event.preventDefault();
+
   const clickedElement = this;
+
   console.log(event);
 
   /* [DONE] remove class 'active' from all article links  */
@@ -89,7 +98,9 @@ function generateTitleLinks(customSelector = ''){
 
     /* create HTML of the link */
 
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+
+    const linkHTML = templates.articleLink(linkHTMLData);
 
     console.log(linkHTML);
 
@@ -251,7 +262,8 @@ function generateTags(){
 
       /* generate HTML of the link */
 
-      const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+      const linkHTMLData = {id: articleTags , title: tag };
+      const linkHTML = templates.tagLink(linkHTMLData);
 
       console.log(linkHTML);
 
@@ -393,7 +405,7 @@ function authorClickHandler(event){
 
   /* execute function "generateTitleLinks" with article selector as argument */
 
-  generateTitleLinks('[data-author~="' + optAuthorsListSelector + '"]');
+  generateTitleLinks('[data-author~="' + optArticleSelector + '"]');
 }
 //////////////////////////////////////////function generateAuthors///////////////////////////////////////////
 function generateAuthors (){
@@ -426,7 +438,8 @@ function generateAuthors (){
 
     /*generate html*/
 
-    const linkHTML = '<li><a href="#author' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
+    const linkHTMLData = {id: articleAuthor, title: articleAuthor};
+    const linkHTML = templates.authorLink(linkHTMLData);
 
     /*add generate to html*/
 
